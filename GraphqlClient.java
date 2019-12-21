@@ -257,6 +257,28 @@ public class GraphqlClient
         }
         return result.data.CreateTemplate;
     }
+	
+	
+	public class AddArticles
+	{
+		public Articles articles
+	}
+	
+	public Article AddArticlesToJob(int jobId, int number, String title, String description)
+	{
+		GraphqlRequest q = new GraphqlRequest();
+		q.query = readFile("ZenterApiQueries/AddArticlesToJob.graphql");
+		q.variables = new HashMap<String, String>();
+		q.variables.put("jobId", jobId);
+		q.variables.put("number", number);
+		q.variables.put("title", title);
+		q.variables.put("description", description);
+		
+		GraphqlResponse<AddArticles> result = this.query(q, AddArticles.class);
+		
+		return result.data.articles
+	}
+	
 
     public class FindTemplate
     {
@@ -292,4 +314,6 @@ public class GraphqlClient
 
         System.out.println(result.data.SendJob.sendStatus);
     }
+	
+	
 }

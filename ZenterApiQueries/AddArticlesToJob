@@ -1,0 +1,7 @@
+mutation AddSectionMut($jobId: Int!, $number: Int!, $type: Int!, $title: String!, $description: String!)
+{
+	article:AddSection(jobId:$jobId, number:$number, type:$type, title: $title, description: $description)
+	{
+		id
+	}
+}
